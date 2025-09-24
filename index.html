@@ -90,6 +90,9 @@ h1{ font-size:clamp(1.35rem,5.5vw,2.5rem); margin:0 0 10px 0; line-height:1.15; 
   header{ flex-direction:column; align-items:flex-start; gap:10px;} 
   .buttons .btn{ width:100%;} 
   .product-item{ width:105px; height:150px;} 
+
+  /* FAQ sol boşluk düzeltme */
+  .faq { padding-left: 10px; }
 }
 </style>
 </head>
@@ -164,11 +167,29 @@ window.addEventListener('load', () => {
     const dy=(to.top+to.height/2)-(from.top+from.height/2);
     const scale=to.width/from.width;
 
-    introLogo.animate([{transform:'translate(-50%, -50%) scale(1)'},{transform:`translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${scale})`}],{duration:2000,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'}).finished.then(()=>{
+    introLogo.animate(
+      [
+        {transform:'translate(-50%, -50%) scale(1)'},
+        {transform:`translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(${scale})`}
+      ],
+      {duration:2000,easing:'cubic-bezier(.2,.8,.2,1)',fill:'forwards'}
+    ).finished.then(()=>{
       headerLogoWrap.classList.add('ready'); intro.remove();
       const text=brand.textContent.trim(); brand.textContent=''; brand.style.visibility='visible';
-      const chars=[]; for(let i=0;i<text.length;i++){const span=document.createElement('span'); span.className='char'; span.textContent=text[i]; brand.appendChild(span); chars.push(span);}
-      const total=chars.length||1; const step=2000/total; let i=0; (function reveal(){if(i<total){chars[i].style.opacity='1'; i++; setTimeout(reveal,step);}})();
+      const chars=[]; 
+      for(let i=0;i<text.length;i++){
+        const span=document.createElement('span'); 
+        span.className='char'; 
+        span.textContent=text[i]; 
+        brand.appendChild(span); 
+        chars.push(span);
+      }
+      const total=chars.length||1; 
+      const step=2000/total; 
+      let i=0; 
+      (function reveal(){
+        if(i<total){chars[i].style.opacity='1'; i++; setTimeout(reveal,step);}
+      })();
     });
   });
 });
@@ -236,5 +257,4 @@ shopierSlider.addEventListener('touchend', ()=>{ isDown=false; shopierTrackEl.st
 shopierSlider.addEventListener('touchmove', e => { if(!isDown) return; const walk = e.touches[0].pageX - startX; shopierTrackEl.style.transform = `translateX(${-index*(items[0].offsetWidth+12)+walk}px)`; });
 </script>
 </body>
-</html> 
-
+</html>

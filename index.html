@@ -54,46 +54,37 @@ h1{ font-size:clamp(1.35rem,5.5vw,2.5rem); margin:0 0 10px 0; line-height:1.15; 
 .buttons{ display:flex; flex-direction:column; gap:12px; }
 .buttons .btn{ width:100%; }
 .btn{ position:relative; display:inline-flex; align-items:center; justify-content:center; padding:12px 20px; border-radius: var(--radius); border: var(--btn-border) solid transparent; text-decoration:none; font-weight:700; font-size:clamp(.92rem,3.2vw,1rem); line-height:1; min-height:46px; cursor:pointer; user-select:none; background-clip: padding-box; box-shadow:0 2px 8px #00000040; transition: transform .18s ease, box-shadow .18s ease, filter .18s ease, background-position .35s ease;}
-.btn:hover, .btn:focus-visible{ transform: translateY(-1px) scale(1.02); box-shadow: 0 14px 28px #00000070, 0 0 0 3px #ffffff26 inset; filter: saturate(1.08) contrast(1.05); outline: none; }
-.btn:active{ transform: translateY(0) scale(1); box-shadow: 0 6px 16px #00000055; }
-.btn.is-disabled, .btn[aria-disabled="true"]{ cursor: pointer; }
-.btn.insta{ color:#fff; background-image: linear-gradient(45deg,var(--warm-1),var(--warm-2),var(--warm-3),var(--warm-4),var(--warm-5)); background-size:160% 160%; }
+/* Renkli butonlar */
+.btn.insta{ color:#fff; background-image: linear-gradient(45deg,var(--warm-1),var(--warm-2),var(--warm-3),var(--warm-4),var(--warm-5)); }
 .btn.fac{ color:#fff; background:var(--facebook); border-color:var(--facebook); }
-.btn.tiktok{ color:#fff; background-image: linear-gradient(var(--tiktok-dark), var(--tiktok-dark)), conic-gradient(from 210deg,var(--tiktok-cyan),var(--tiktok-red),var(--tiktok-cyan)); background-origin: padding-box, border-box; background-clip: padding-box, border-box; animation:hueSpin var(--spin-fast) linear infinite; }
-@keyframes hueSpin{ to{ filter:hue-rotate(360deg); } }
+.btn.tiktok{ color:#fff; background:var(--tiktok-dark); }
 .btn.yt{ color:#fff; background:var(--youtube); border-color:var(--youtube); }
 .btn.wa{ color:#fff; background:var(--whatsapp); border-color:var(--whatsapp); }
 .btn.shopier{ color:#fff; background-image:linear-gradient(135deg,var(--shopier),var(--shopier-2)); background-size:220% 220%; animation:gradientShift var(--shift-slow) ease-in-out infinite alternate; }
 .btn.--lg{ padding:14px 22px; font-size:clamp(1rem,3.4vw,1.08rem); min-height:50px; }
 
-/* Shopier slider */
+/* Shopier ürün grid */
 .shopier-card { position: relative; display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
-.shopier-slider { display: none; overflow: hidden; gap: 12px; height: 150px; margin-top: 10px; position: relative; touch-action: pan-x; cursor: grab; }
-.shopier-slider:active { cursor: grabbing; }
-.shopier-track { display: flex; gap: 12px; transition: transform .3s ease; will-change: transform; }
-/* Ürün kutusu 105x115px */
-.product-item { flex: 0 0 auto; width:105px; height:150px; background:#ffffff15; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:4px; text-align:center; font-size:0.85rem; }
-.product-item img{ width:60px; height:60px; margin-bottom:4px; }
+.shopier-slider { display: none; margin-top: 10px; }
+.shopier-track { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.product-item { background:#ffffff15; border-radius:8px; padding:10px; text-align:center; font-size:0.85rem; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.product-item img{ width:100%; height:auto; border-radius:6px; margin-bottom:4px; }
 
-/* Slider butonları */
-.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: #00000088; border: none; color: #fff; font-size: 1.5rem; padding: 4px; cursor: pointer; border-radius: 50%; z-index: 10; }
-.slider-btn.left { left: 4px; } 
-.slider-btn.right { right: 4px; }
-
-/* FAQ */
-.faq h2{ margin:0 0 14px 0; font-size: clamp(1.1rem,4.4vw,1.6rem); line-height:1.1; background-image: linear-gradient(45deg,var(--warm-1),var(--warm-2),var(--warm-3),var(--warm-4),var(--warm-5)); background-size:220% 220%; animation: gradientShift var(--shift-med) ease-in-out infinite alternate; -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 1px 10px rgba(0,0,0,.35);}
-.faq-item strong{ display:block; margin-bottom:6px; font-size:clamp(1rem,3.5vw,1.1rem); background-image: linear-gradient(45deg,var(--cool-1),var(--cool-2),var(--cool-3),var(--cool-4)); background-size:220% 220%; animation: gradientShift var(--shift-slow) ease-in-out infinite alternate; -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 1px 8px rgba(0,0,0,.28);}
-.faq-item span{ display:block; font-size:clamp(.96rem,3.2vw,1rem); opacity:.95; line-height:1.5; color:var(--text);}
-.faq-item + .faq-item{ margin-top:14px; }
-
+@media(max-width:1024px){ .shopier-track{ grid-template-columns: repeat(3, 1fr);} }
 @media(max-width:600px){ 
   header{ flex-direction:column; align-items:flex-start; gap:10px;} 
-  .buttons .btn{ width:100%;} 
-  .product-item{ width:105px; height:150px;} 
-
-  /* FAQ sol boşluk düzeltme */
-  .faq { padding-left: 10px; }
+  .buttons .btn{ width:100%;}
+  .shopier-track{ grid-template-columns: repeat(2, 1fr);}
 }
+
+/* FAQ */
+.faq h2{ margin:0 0 14px 0; font-size: clamp(1.1rem,4.4vw,1.6rem); line-height:1.1; background-image: linear-gradient(45deg,var(--warm-1),var(--warm-2),var(--warm-3),var(--warm-4),var(--warm-5)); background-size:220% 220%; -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 1px 10px rgba(0,0,0,.35);}
+.faq-item{ background:#ffffff0f; border:1px solid #ffffff2a; border-radius:var(--radius); margin-bottom:10px; overflow:hidden; transition:max-height 0.3s ease;}
+.faq-question{ display:flex; justify-content:space-between; align-items:center; padding:12px; cursor:pointer;}
+.faq-question strong{ font-size:clamp(1rem,3.5vw,1.1rem); background-image: linear-gradient(45deg,var(--cool-1),var(--cool-2),var(--cool-3),var(--cool-4)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.faq-toggle{ font-size:1.4rem; color:var(--text);}
+.faq-answer{ max-height:0; overflow:hidden; padding:0 12px; transition:max-height 0.3s ease, padding 0.3s ease;}
+.faq-item.open .faq-answer{ max-height:200px; padding:12px;}
 </style>
 </head>
 <body>
@@ -115,17 +106,17 @@ h1{ font-size:clamp(1.35rem,5.5vw,2.5rem); margin:0 0 10px 0; line-height:1.15; 
     <h3>Bizi Takip Et</h3>
     <p>Güncel stok, paketleme ve teslimat duyuruları için:</p>
     <div class="buttons">
-      <a class="btn insta" href="#" onclick="return false;">Instagram</a>
-      <a class="btn fac"   href="#" onclick="return false;">Facebook</a>
-      <a class="btn tiktok"href="#" onclick="return false;">TikTok</a>
-      <a class="btn yt"    href="#" onclick="return false;">YouTube</a>
+      <a class="btn insta" href="https://www.instagram.com/canliyem.bk?igsh=cmx5YXRjenN2c2Zr">Instagram</a>
+      <a class="btn fac" href="https://www.facebook.com/share/1aUMqiYQPR/">Facebook</a>
+      <a class="btn tiktok" href="http://tiktok.com/@canliyem.bk">TikTok</a>
+      <a class="btn yt" href="https://www.youtube.com/@canliyembk">YouTube</a>
     </div>
   </div>
   <div class="card support-card">
     <h3>Özel Sipariş Canlı Destek</h3>
     <p>Farklı gramaj, paketleme veya toplu sipariş için; ya da hızlıca iletişim kurmak istersen:</p>
     <div class="buttons">
-      <a class="btn wa --lg" href="#" onclick="return false;">WhatsApp Canlı Destek</a>
+      <a class="btn wa --lg" href="https://wa.me/905432374046">WhatsApp Canlı Destek</a>
     </div>
   </div>
   <div class="card shopier-card">
@@ -134,18 +125,28 @@ h1{ font-size:clamp(1.35rem,5.5vw,2.5rem); margin:0 0 10px 0; line-height:1.15; 
     <button class="btn shopier --lg" id="shopierBtn">SHOPIER</button>
     <div class="shopier-slider" id="shopierSlider">
       <div class="shopier-track" id="shopierTrack"></div>
-      <button class="slider-btn left" id="leftBtn">&#10094;</button>
-      <button class="slider-btn right" id="rightBtn">&#10095;</button>
     </div>
   </div>
 </section>
 
 <section class="faq">
 <h2>Sık Sorulan Sorular</h2>
-<div class="faq-item"><strong>Un kurdu kokar mı?</strong><span>Hayır, doğru koşullar sağlandığında koku problemi yaşanmaz.</span></div>
-<div class="faq-item"><strong>Un kurtları kargoda ölür mü?</strong><span>Özel paketleme ile genellikle sorunsuz ulaşır.</span></div>
-<div class="faq-item"><strong>Kaç derece sıcaklığa dayanır?</strong><span>Un kurtları 10–35°C arası sıcaklıklarda yaşar.</span></div>
-<div class="faq-item"><strong>Kullanım alanları nelerdir?</strong><span>Canlı/kurutulmuş un kurdu; akvaryum balıkları, süs kuşları, sürüngenler ve civciv/kümes hayvanları için yüksek proteinli yem olarak kullanılır. Ayrıca balık avcılığında canlı yem olarak kancaya takılıp kullanılabilir. Dengeli beslenme için evcil canlılarda ana yem yerine haftada 2–3 kez destek olarak verilmesi önerilir.</span></div>
+<div class="faq-item">
+  <div class="faq-question"><strong>Un kurdu kokar mı?</strong><span class="faq-toggle">+</span></div>
+  <div class="faq-answer"><p>Hayır, doğru koşullar sağlandığında koku problemi yaşanmaz.</p></div>
+</div>
+<div class="faq-item">
+  <div class="faq-question"><strong>Un kurtları kargoda ölür mü?</strong><span class="faq-toggle">+</span></div>
+  <div class="faq-answer"><p>Özel paketleme ile genellikle sorunsuz ulaşır.</p></div>
+</div>
+<div class="faq-item">
+  <div class="faq-question"><strong>Kaç derece sıcaklığa dayanır?</strong><span class="faq-toggle">+</span></div>
+  <div class="faq-answer"><p>Un kurtları 10–35°C arası sıcaklıklarda yaşar.</p></div>
+</div>
+<div class="faq-item">
+  <div class="faq-question"><strong>Kullanım alanları nelerdir?</strong><span class="faq-toggle">+</span></div>
+  <div class="faq-answer"><p>Canlı/kurutulmuş un kurdu; akvaryum balıkları, süs kuşları, sürüngenler ve civciv/kümes hayvanları için yüksek proteinli yem olarak kullanılır.</p></div>
+</div>
 </section>
 </main>
 </div>
@@ -194,67 +195,51 @@ window.addEventListener('load', () => {
   });
 });
 
-// Shopier slider açma/kapatma
-const shopierBtn = document.getElementById('shopierBtn');
-const shopierSlider = document.getElementById('shopierSlider');
-shopierBtn.addEventListener('click', () => {
-  shopierSlider.style.display = shopierSlider.style.display === 'flex' ? 'none' : 'flex';
+// Shopier aç/kapat
+const shopierBtn=document.getElementById('shopierBtn');
+const shopierSlider=document.getElementById('shopierSlider');
+shopierBtn.addEventListener('click',()=>{ 
+  shopierSlider.style.display=shopierSlider.style.display==='grid'?'none':'grid'; 
 });
 
-// 10 temel ürün bilgisi
-const baseProducts = [
-  {id:1, name:"Ürün 1", img:"urun1.jpg", price:"₺10", link:"#1"},
-  {id:2, name:"Ürün 2", img:"urun2.jpg", price:"₺20", link:"#2"},
-  {id:3, name:"Ürün 3", img:"urun3.jpg", price:"₺30", link:"#3"},
-  {id:4, name:"Ürün 4", img:"urun4.jpg", price:"₺40", link:"#4"},
-  {id:5, name:"Ürün 5", img:"urun5.jpg", price:"₺50", link:"#5"},
-  {id:6, name:"Ürün 6", img:"urun6.jpg", price:"₺60", link:"#6"},
-  {id:7, name:"Ürün 7", img:"urun7.jpg", price:"₺70", link:"#7"},
-  {id:8, name:"Ürün 8", img:"urun8.jpg", price:"₺80", link:"#8"},
-  {id:9, name:"Ürün 9", img:"urun9.jpg", price:"₺90", link:"#9"},
-  {id:10,name:"Ürün 10",img:"urun10.jpg",price:"₺100",link:"#10"},
+// Ürünler
+const baseProducts=[
+  {name:"100 Adet Un Kurdu",img:"100 ADET.jpg",price:"₺350",link:"https://www.shopier.com/39669221"},
+  {name:"200 Adet Un Kurdu",img:"100 ADET (1).jpg",price:"₺450",link:"https://www.shopier.com/39670687"},
+  {name:"300 Adet Un Kurdu",img:"100 ADET (2).jpg",price:"₺550",link:"https://www.shopier.com/39670708"},
+  {name:"400 Adet Un Kurdu",img:"100 ADET (3).jpg",price:"₺650",link:"https://www.shopier.com/39670864"},
+  {name:"500 Adet Un Kurdu",img:"100 ADET (4).jpg",price:"₺750",link:"https://www.shopier.com/39670902"},
+  {name:"Un Kurdu Yetiştirme Kiti",img:"4e9ec95a-d940-4564-bdda-f6ac26c0ee49.jfif",price:"₺1100",link:"https://www.shopier.com/39672440"}
 ];
-
-// 100 ürün elemanı oluştur
-const shopierTrackEl = document.getElementById('shopierTrack');
-const totalItems = 100;
-for(let i=0;i<totalItems;i++){
-  const base = baseProducts[i % 10]; // 1-10 döngüsü
-  const item = document.createElement('div');
-  item.className = "product-item";
-  item.innerHTML = `
+const shopierTrackEl=document.getElementById('shopierTrack');
+baseProducts.forEach(base=>{
+  const item=document.createElement('div');
+  item.className="product-item";
+  item.innerHTML=`
     <img src="${base.img}" alt="${base.name}">
     <div>${base.name}</div>
     <div>${base.price}</div>
     <a href="${base.link}" class="btn shopier" style="margin-top:4px;font-size:0.8rem;padding:4px 8px;">Satın Al</a>
   `;
   shopierTrackEl.appendChild(item);
-}
-
-// Slider fonksiyonları
-let index = 0;
-const items = Array.from(shopierTrackEl.children);
-function updateSlider() {
-  const w = items[0].offsetWidth + 12;
-  shopierTrackEl.style.transition = 'transform 0.3s ease';
-  shopierTrackEl.style.transform = `translateX(${-index * w}px)`;
-}
-document.getElementById('leftBtn').addEventListener('click',()=>{
-  index--; if(index<0) index=items.length-1; updateSlider();
-});
-document.getElementById('rightBtn').addEventListener('click',()=>{
-  index++; if(index>=items.length) index=0; updateSlider();
 });
 
-// Slider dokunmatik/fare kaydırma
-let isDown=false, startX=0;
-shopierSlider.addEventListener('mousedown', e => { isDown=true; startX=e.pageX; shopierTrackEl.style.transition='none'; });
-shopierSlider.addEventListener('mouseup', ()=>{ isDown=false; shopierTrackEl.style.transition='transform 0.3s ease'; });
-shopierSlider.addEventListener('mouseleave', ()=>{ isDown=false; shopierTrackEl.style.transition='transform 0.3s ease'; });
-shopierSlider.addEventListener('mousemove', e => { if(!isDown) return; const walk = e.pageX - startX; shopierTrackEl.style.transform = `translateX(${-index*(items[0].offsetWidth+12)+walk}px)`; });
-shopierSlider.addEventListener('touchstart', e => { isDown = true; startX = e.touches[0].pageX; shopierTrackEl.style.transition='none'; });
-shopierSlider.addEventListener('touchend', ()=>{ isDown=false; shopierTrackEl.style.transition='transform 0.3s ease'; });
-shopierSlider.addEventListener('touchmove', e => { if(!isDown) return; const walk = e.touches[0].pageX - startX; shopierTrackEl.style.transform = `translateX(${-index*(items[0].offsetWidth+12)+walk}px)`; });
+// FAQ accordion (sadece biri açık kalır + kaydırma)
+document.querySelectorAll('.faq-question').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-toggle').textContent='+';
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      q.querySelector('.faq-toggle').textContent='–';
+      item.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+  });
+});
 </script>
 </body>
 </html>
